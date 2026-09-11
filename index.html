@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>賞与手取り計算ツール | ボーナスの手取り額をすぐ計算</title>
+<meta name="description" content="賞与（ボーナス）の額面・前月の給与額・扶養人数を入れるだけで、社会保険料と源泉所得税を差し引いた手取り賞与額の目安がすぐ分かる無料ツールです。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://webtools-labs.com/bonus-tedori-keisan/">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2370765779014113" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NKK5TXCQEK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NKK5TXCQEK');
+</script>
+<script>
+(function () {
+  var fired = false;
+  function fireOnce() {
+    if (fired) return;
+    fired = true;
+    if (typeof gtag === 'function') gtag('event', 'tool_used', { tool_name: document.title });
+  }
+  document.addEventListener('input', fireOnce, true);
+  document.addEventListener('change', fireOnce, true);
+})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f766e'/%3E%3Ctext x='50' y='68' font-size='60' text-anchor='middle' fill='white' font-family='sans-serif'%3E%EF%BF%A5%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="webtools-labs">
+<meta property="og:title" content="賞与手取り計算ツール | ボーナスの手取り額をすぐ計算">
+<meta property="og:description" content="賞与の額面・前月の給与額・扶養人数から、社会保険料と源泉所得税を引いた手取り賞与額の目安をすぐ計算できます。">
+<meta property="og:url" content="https://webtools-labs.com/bonus-tedori-keisan/">
+<meta property="og:image" content="https://webtools-labs.com/bonus-tedori-keisan/og-image.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="賞与手取り計算ツール">
+<meta name="twitter:description" content="賞与の額面からすぐに手取り額を計算できる無料ツール。">
+<meta name="twitter:image" content="https://webtools-labs.com/bonus-tedori-keisan/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "賞与手取り計算ツール",
+  "url": "https://webtools-labs.com/bonus-tedori-keisan/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "賞与の額面・前月の給与額・扶養人数から、社会保険料と源泉所得税を差し引いた手取り賞与額の目安を計算できる無料ツール。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
+  "inLanguage": "ja"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "賞与にも社会保険料はかかりますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "はい。賞与も「標準賞与額」として健康保険料・厚生年金保険料・雇用保険料の対象になります。厚生年金保険料は1回の賞与につき150万円が上限となり、それを超える部分には保険料がかかりません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "扶養親族等の数はどこを確認すればいいですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "会社に提出している「給与所得者の扶養控除等申告書」に記載した、源泉控除対象配偶者・源泉控除対象親族の合計人数です。人数が分からない場合は、月給の給与明細に記載の扶養人数や年末調整の書類を確認してください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "なぜ前月の給与額が必要なのですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "賞与にかかる源泉所得税の税率は、国税庁の「賞与に対する源泉徴収税額の算出率の表」により、前月の社会保険料等控除後の給与額と扶養親族等の数の組み合わせで決まるためです。前月の給与額が高いほど、同じ賞与額でも税率が高くなります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "手取り計算ツール（月給用）との違いは何ですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "月給の手取り計算ツールは毎月の給与を対象にしたもので、所得税は超過累進課税の月額表を使います。本ツールは賞与（ボーナス）専用で、税率の求め方が異なる「賞与に対する源泉徴収税額の算出率の表」を使用します。月給の手取りは当サイトの手取り計算ツールをご利用ください。" }
+    }
+  ]
+}
+</script>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface-2: #f7f7f7;
+  --ink: #1a1a1a;
+  --muted: #767676;
+  --line: #e3e3e3;
+  --accent: #0f766e;
+  --best-bg: #f0f8f6;
+  --warn-bg: #fff7ed;
+  --warn-ink: #9a5b00;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 4rem; }
+header.masthead { margin-bottom: 1.5rem; }
+h1 {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4.5vw, 1.7rem);
+  margin: 0 0 0.7rem;
+  letter-spacing: 0.01em;
+}
+p.lede { color: var(--muted); margin: 0; max-width: 60ch; font-size: 0.95rem; }
+.updated-note { display: block; margin-top: 0.9rem; font-size: 0.78rem; color: var(--muted); }
+
+.notice-box {
+  background: var(--warn-bg); color: var(--warn-ink); border-radius: 8px;
+  padding: 0.9rem 1.1rem; font-size: 0.85rem; margin-bottom: 2rem;
+}
+
+section { margin-bottom: 2.5rem; }
+h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 1rem; }
+
+.field-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+.field { flex: 1; min-width: 160px; }
+.field label { display: block; font-size: 0.83rem; color: var(--muted); margin-bottom: 0.35rem; }
+.field input[type="number"], .field select {
+  width: 100%; font-variant-numeric: tabular-nums; font-size: 1.05rem; font-family: inherit;
+  padding: 0.55rem 0.7rem; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: var(--ink);
+}
+.field input:focus, .field select:focus { outline: none; border-color: var(--accent); }
+.field-hint { font-size: 0.76rem; color: var(--muted); margin-top: 0.3rem; }
+
+.summary-cards { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.summary-card {
+  flex: 1; min-width: 180px; background: var(--best-bg); border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+.summary-card .label { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.3rem; }
+.summary-card .value { font-size: 1.4rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.summary-card .sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+table.compare { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+table.compare th, table.compare td {
+  padding: 0.55rem 0.5rem; text-align: right; border-bottom: 1px solid var(--line); vertical-align: top;
+}
+table.compare th:first-child, table.compare td:first-child { text-align: left; }
+table.compare thead th { color: var(--muted); font-weight: 500; font-size: 0.78rem; }
+table.compare td.num { font-variant-numeric: tabular-nums; }
+tr.best td { font-weight: 700; }
+tr.best { background: var(--best-bg); }
+tr.na td { color: var(--muted); }
+
+.ref-table { overflow-x: auto; }
+.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 460px; }
+.ref-table th, .ref-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
+.ref-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
+
+.disclaimer { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; }
+
+.share-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.1rem; }
+.share-btn {
+  display: inline-flex; align-items: center; padding: 0.5rem 1rem; border-radius: 999px;
+  color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700;
+}
+.share-btn:hover { opacity: 0.85; }
+.share-x { background: #000; }
+.share-line { background: #06c755; }
+.share-fb { background: #1877f2; }
+.share-hatena { background: #00a4de; }
+
+.ad-slot { margin: 2.5rem 0; text-align: center; min-height: 100px; }
+
+.contact-box textarea {
+  width: 100%; min-height: 6rem; font-family: inherit; font-size: 0.92rem;
+  padding: 0.7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink);
+  resize: vertical; margin-bottom: 0.6rem;
+}
+.contact-box input[type="email"] {
+  width: 100%; font-family: inherit; font-size: 0.92rem;
+  padding: 0.6rem 0.7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+.contact-box textarea:focus, .contact-box input:focus { outline: none; border-color: var(--accent); }
+.contact-box button {
+  font-family: inherit; font-weight: 700; font-size: 0.9rem; padding: 0.6rem 1.4rem;
+  border: none; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer;
+}
+.contact-box button:disabled { opacity: 0.5; cursor: not-allowed; }
+.contact-status { font-size: 0.85rem; margin-top: 0.6rem; }
+.contact-status.ok { color: var(--accent); }
+.contact-status.err { color: #b91c1c; }
+
+footer.site-footer {
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+  font-size: 0.78rem; color: var(--muted);
+}
+footer.site-footer p { margin: 0 0 0.5rem; }
+footer.site-footer a { color: var(--accent); }
+
+.faq-item { border-bottom: 1px solid var(--line); padding: 0.9rem 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-item summary {
+  cursor: pointer; font-weight: 700; font-size: 0.92rem; list-style: none;
+  position: relative; padding-right: 1.6rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; position: absolute; right: 0; top: 0; color: var(--accent); font-weight: 700; font-size: 1.1rem;
+}
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { margin: 0.7rem 0 0; color: var(--muted); font-size: 0.88rem; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>賞与手取り計算ツール</h1>
+    <p class="lede">賞与（ボーナス）の額面・前月の給与額・扶養人数を入れるだけで、社会保険料と源泉所得税を差し引いた手取り賞与額の目安を計算できます。</p>
+    <span class="updated-note">保険料率・税額表 最終確認日: 2026年9月11日</span>
+  </header>
+
+  <div class="notice-box">
+    ⚠️ 健康保険料率（協会けんぽ東京都 9.85%）・雇用保険料率（一般の事業 労働者負担5/1000）は2026年度（令和8年度）の最新料率、源泉所得税の税率は国税庁「賞与に対する源泉徴収税額の算出率の表（令和8年分）」にもとづいています。加入する健保組合や年度によって料率は変わります。
+  </div>
+
+  <section>
+    <h2>賞与額から手取りを計算</h2>
+    <div class="field-row">
+      <div class="field">
+        <label for="bonus">賞与の額面（円）</label>
+        <input type="number" id="bonus" min="0" step="1000" value="300000">
+      </div>
+      <div class="field">
+        <label for="prevSalary">前月の給与額（社会保険料等控除後・円）</label>
+        <input type="number" id="prevSalary" min="0" step="1000" value="250000">
+        <div class="field-hint">給与明細の「社会保険料等控除後の金額」を入力してください</div>
+      </div>
+      <div class="field">
+        <label for="dependents">扶養親族等の数</label>
+        <select id="dependents">
+          <option value="0">0人</option>
+          <option value="1">1人</option>
+          <option value="2">2人</option>
+          <option value="3">3人</option>
+          <option value="4">4人以上</option>
+        </select>
+        <div class="field-hint">「給与所得者の扶養控除等申告書」の人数</div>
+      </div>
+    </div>
+
+    <div class="summary-cards" id="summaryCards"></div>
+
+    <div style="overflow-x:auto">
+      <table class="compare">
+        <thead>
+          <tr><th>項目</th><th class="num">金額</th></tr>
+        </thead>
+        <tbody id="resultBody"></tbody>
+      </table>
+    </div>
+    <p class="disclaimer">本ツールは「協会けんぽ・東京都・40歳未満（介護保険料非該当）・厚生年金加入」を前提にした概算です。健康保険料率は加入する都道府県・健保組合により異なり、40歳以上65歳未満の方は介護保険料が加算されます。源泉所得税は「給与所得者の扶養控除等申告書」を提出している場合（甲欄）の税率を使用しています。正確な金額は給与明細・勤務先の給与担当にご確認ください。</p>
+    <div class="share-row" id="shareRow">
+      <a class="share-btn share-x" id="shareX" href="#" target="_blank" rel="noopener">𝕏でシェア</a>
+      <a class="share-btn share-line" id="shareLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
+      <a class="share-btn share-fb" id="shareFb" href="#" target="_blank" rel="noopener">Facebookでシェア</a>
+      <a class="share-btn share-hatena" id="shareHatena" href="#" target="_blank" rel="noopener">はてブする</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>賞与の社会保険料・税金の仕組み</h2>
+    <div class="ref-table">
+      <table>
+        <thead><tr><th>項目</th><th>料率（2026年度・労働者負担分）</th><th class="num">備考</th></tr></thead>
+        <tbody>
+          <tr><td>健康保険料</td><td>9.85% ÷ 2</td><td class="num">協会けんぽ・東京都</td></tr>
+          <tr><td>厚生年金保険料</td><td>18.3% ÷ 2</td><td class="num">標準賞与額150万円が上限</td></tr>
+          <tr><td>雇用保険料</td><td>0.5%（5/1000）</td><td class="num">一般の事業</td></tr>
+          <tr><td>源泉所得税</td><td>賞与の金額に乗ずべき率</td><td class="num">前月給与・扶養人数で変動</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-2370765779014113"
+      data-ad-slot="3021985784"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <section>
+    <h2>よくある質問</h2>
+    <details class="faq-item">
+      <summary>賞与にも社会保険料はかかりますか？</summary>
+      <p>はい。賞与も「標準賞与額」として健康保険料・厚生年金保険料・雇用保険料の対象になります。厚生年金保険料は1回の賞与につき150万円が上限となり、それを超える部分には保険料がかかりません。</p>
+    </details>
+    <details class="faq-item">
+      <summary>扶養親族等の数はどこを確認すればいいですか？</summary>
+      <p>会社に提出している「給与所得者の扶養控除等申告書」に記載した、源泉控除対象配偶者・源泉控除対象親族の合計人数です。人数が分からない場合は、月給の給与明細に記載の扶養人数や年末調整の書類を確認してください。</p>
+    </details>
+    <details class="faq-item">
+      <summary>なぜ前月の給与額が必要なのですか？</summary>
+      <p>賞与にかかる源泉所得税の税率は、国税庁の「賞与に対する源泉徴収税額の算出率の表」により、前月の社会保険料等控除後の給与額と扶養親族等の数の組み合わせで決まるためです。前月の給与額が高いほど、同じ賞与額でも税率が高くなります。</p>
+    </details>
+    <details class="faq-item">
+      <summary>手取り計算ツール（月給用）との違いは何ですか？</summary>
+      <p>月給の手取り計算ツールは毎月の給与を対象にしたもので、所得税は超過累進課税の月額表を使います。本ツールは賞与（ボーナス）専用で、税率の求め方が異なる「賞与に対する源泉徴収税額の算出率の表」を使用します。月給の手取りは当サイトの手取り計算ツールをご利用ください。</p>
+    </details>
+  </section>
+
+  <section class="contact-box">
+    <h2>ご意見・追加してほしい機能</h2>
+    <p class="lede" style="margin-bottom:0.9rem;">気づいたことや、あったら便利な機能があれば教えてください。</p>
+    <form id="contactForm">
+      <input type="email" id="contactEmail" placeholder="返信が必要な場合はメールアドレス（任意）">
+      <textarea id="contactMessage" placeholder="ご意見・ご要望をどうぞ" required></textarea>
+      <button type="submit" id="contactSubmit">送信する</button>
+      <p class="contact-status" id="contactStatus"></p>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p>本ツールは協会けんぽ・東京都・40歳未満・厚生年金加入を前提にした概算です。実際の手取り額は加入する健保組合、年齢（介護保険料の有無）、前月給与の内容等により異なります。正確な金額は給与明細・勤務先の給与担当にご確認ください。</p>
+    <p>あわせて使える：
+      <a href="https://webtools-labs.com/furima-hikaku-keisan/">フリマ手数料計算・比較ツール</a> ／
+      <a href="https://webtools-labs.com/furima-hasso-hikaku/">フリマ配送方法・送料比較ツール</a> ／
+      <a href="https://webtools-labs.com/furima-tedori-simulator/">フリマ手取りシミュレーター</a> ／
+      <a href="https://webtools-labs.com/yukyu-hiyou-keisan/">有給休暇 付与日数計算ツール</a> ／
+      <a href="https://webtools-labs.com/revolving-risoku-keisan/">リボ払い・分割払い 実質利息計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishoku-yukyu-keisan/">退職時の有給消化シミュレーター</a> ／
+      <a href="https://webtools-labs.com/fuyou-no-kabe-keisan/">扶養の壁チェッカー</a> ／
+      <a href="https://webtools-labs.com/tedori-keisan/">手取り計算ツール</a> ／
+      <a href="https://webtools-labs.com/taishokukin-zei-keisan/">退職金の税金計算ツール</a> ／
+      <a href="https://webtools-labs.com/sankyu-ikuji-teate-keisan/">産休・育休手当金シミュレーター</a> ／
+      <a href="https://webtools-labs.com/zangyodai-keisan/">残業代計算ツール</a> ／
+      <a href="https://webtools-labs.com/shitsugyo-hoken-keisan/">失業保険（基本手当）シミュレーター</a> ／
+      <a href="https://webtools-labs.com/jikyu-nenshu-keisan/">時給から年収・月収を計算</a> ／
+      <a href="https://webtools-labs.com/yubin-kitte-keisan/">郵便物の切手代早見表</a>
+    </p>
+    <p>当サイトは広告を掲載する場合があります。</p>
+    <p><a href="https://webtools-labs.com/about/">運営者情報</a> ／ <a href="https://webtools-labs.com/privacy/">プライバシーポリシー</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  function yen(n) { return Math.round(n).toLocaleString('ja-JP') + '円'; }
+
+  var HEALTH_RATE = 0.0985;
+  var PENSION_RATE = 0.183;
+  var PENSION_CAP = 1500000;
+  var EMPLOYMENT_RATE = 0.005;
+
+  var RATE_TABLE = {
+    0: [[0,82000,0],[82000,94000,2.042],[94000,260000,4.084],[260000,309000,6.126],[309000,342000,8.168],[342000,372000,10.210],[372000,402000,12.252],[402000,433000,14.294],[433000,520000,16.336],[520000,605000,18.378],[605000,684000,20.420],[684000,715000,22.462],[715000,752000,24.504],[752000,795000,26.546],[795000,854000,28.588],[854000,922000,30.630],[922000,1318000,32.672],[1318000,1521000,35.735],[1521000,2621000,38.798],[2621000,3495000,41.861],[3495000,Infinity,45.945]],
+    1: [[0,107000,0],[107000,250000,2.042],[250000,289000,4.084],[289000,346000,6.126],[346000,373000,8.168],[373000,401000,10.210],[401000,430000,12.252],[430000,463000,14.294],[463000,520000,16.336],[520000,621000,18.378],[621000,705000,20.420],[705000,739000,22.462],[739000,778000,24.504],[778000,821000,26.546],[821000,882000,28.588],[882000,952000,30.630],[952000,1342000,32.672],[1342000,1526000,35.735],[1526000,2645000,38.798],[2645000,3527000,41.861],[3527000,Infinity,45.945]],
+    2: [[0,143000,0],[143000,276000,2.042],[276000,321000,4.084],[321000,377000,6.126],[377000,400000,8.168],[400000,426000,10.210],[426000,457000,12.252],[457000,492000,14.294],[492000,525000,16.336],[525000,636000,18.378],[636000,728000,20.420],[728000,764000,22.462],[764000,804000,24.504],[804000,848000,26.546],[848000,910000,28.588],[910000,983000,30.630],[983000,1367000,32.672],[1367000,1526000,35.735],[1526000,2669000,38.798],[2669000,3559000,41.861],[3559000,Infinity,45.945]],
+    3: [[0,181000,0],[181000,300000,2.042],[300000,354000,4.084],[354000,405000,6.126],[405000,424000,8.168],[424000,452000,10.210],[452000,484000,12.252],[484000,517000,14.294],[517000,550000,16.336],[550000,651000,18.378],[651000,751000,20.420],[751000,788000,22.462],[788000,830000,24.504],[830000,876000,26.546],[876000,938000,28.588],[938000,1013000,30.630],[1013000,1391000,32.672],[1391000,1538000,35.735],[1538000,2693000,38.798],[2693000,3590000,41.861],[3590000,Infinity,45.945]],
+    4: [[0,218000,0],[218000,300000,2.042],[300000,387000,4.084],[387000,431000,6.126],[431000,452000,8.168],[452000,477000,10.210],[477000,509000,12.252],[509000,540000,14.294],[540000,577000,16.336],[577000,666000,18.378],[666000,774000,20.420],[774000,813000,22.462],[813000,856000,24.504],[856000,903000,26.546],[903000,966000,28.588],[966000,1044000,30.630],[1044000,1416000,32.672],[1416000,1555000,35.735],[1555000,2716000,38.798],[2716000,3622000,41.861],[3622000,Infinity,45.945]]
+  };
+
+  function findRate(dependents, prevMonthNet) {
+    var table = RATE_TABLE[Math.min(dependents, 4)];
+    for (var i = 0; i < table.length; i++) {
+      if (prevMonthNet >= table[i][0] && prevMonthNet < table[i][1]) return table[i][2];
+    }
+    return table[table.length - 1][2];
+  }
+
+  var bonusInput = document.getElementById('bonus');
+  var prevSalaryInput = document.getElementById('prevSalary');
+  var dependentsSelect = document.getElementById('dependents');
+  var summaryCards = document.getElementById('summaryCards');
+  var resultBody = document.getElementById('resultBody');
+  var shareX = document.getElementById('shareX');
+  var shareLine = document.getElementById('shareLine');
+  var shareFb = document.getElementById('shareFb');
+  var shareHatena = document.getElementById('shareHatena');
+
+  function setShareLinks(text, url) {
+    shareX.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+    shareLine.href = 'https://line.me/R/msg/text/?' + encodeURIComponent(text + '\n' + url);
+    shareFb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&quote=' + encodeURIComponent(text);
+    shareHatena.href = 'https://b.hatena.ne.jp/entry/panel/?url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(text);
+  }
+
+  function render() {
+    var bonus = Math.max(0, Number(bonusInput.value) || 0);
+    var prevSalary = Math.max(0, Number(prevSalaryInput.value) || 0);
+    var dependents = Number(dependentsSelect.value);
+
+    var standardBonus = Math.floor(bonus / 1000) * 1000;
+    var health = Math.round(standardBonus * HEALTH_RATE / 2);
+    var pensionBase = Math.min(standardBonus, PENSION_CAP);
+    var pension = Math.round(pensionBase * PENSION_RATE / 2);
+    var employment = Math.round(bonus * EMPLOYMENT_RATE);
+    var socialTotal = health + pension + employment;
+    var afterSocial = Math.max(0, bonus - socialTotal);
+    var rate = findRate(dependents, prevSalary);
+    var tax = Math.round(afterSocial * rate / 100);
+    var takeHome = afterSocial - tax;
+
+    summaryCards.innerHTML =
+      '<div class="summary-card"><div class="label">手取り賞与額</div><div class="value">' + yen(takeHome) + '</div><div class="sub">額面' + yen(bonus) + '中</div></div>' +
+      '<div class="summary-card"><div class="label">天引き額の合計</div><div class="value">' + yen(bonus - takeHome) + '</div><div class="sub">社会保険料+源泉所得税</div></div>';
+
+    var rows = [
+      ['賞与の額面', bonus],
+      ['健康保険料', -health],
+      ['厚生年金保険料', -pension],
+      ['雇用保険料', -employment],
+      ['社会保険料控除後の賞与', afterSocial],
+      ['源泉所得税（税率' + rate + '%）', -tax],
+      ['手取り賞与額', takeHome]
+    ];
+    resultBody.innerHTML = rows.map(function (r, i) {
+      var isLast = i === rows.length - 1;
+      var val = r[1] < 0 ? '－' + yen(Math.abs(r[1])) : yen(r[1]);
+      return '<tr class="' + (isLast ? 'best' : '') + '"><td>' + r[0] + '</td><td class="num">' + val + '</td></tr>';
+    }).join('');
+
+    var shareText = '賞与' + bonus.toLocaleString('ja-JP') + '円の手取りは\n' +
+      yen(takeHome) + 'でした\n\n賞与手取り計算ツール';
+    setShareLinks(shareText, 'https://webtools-labs.com/bonus-tedori-keisan/');
+  }
+
+  bonusInput.addEventListener('input', render);
+  prevSalaryInput.addEventListener('input', render);
+  dependentsSelect.addEventListener('change', render);
+
+  render();
+
+  var WEB3FORMS_ACCESS_KEY = '4551c9fd-4327-4bd4-97e0-8b93d85fd077';
+  var contactForm = document.getElementById('contactForm');
+  var contactStatus = document.getElementById('contactStatus');
+  var contactSubmit = document.getElementById('contactSubmit');
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    contactSubmit.disabled = true;
+    contactStatus.textContent = '送信中...';
+    contactStatus.className = 'contact-status';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: '賞与手取り計算ツールへのお問い合わせ',
+        email: document.getElementById('contactEmail').value || 'noreply@example.com',
+        message: document.getElementById('contactMessage').value
+      })
+    }).then(function (res) { return res.json(); }).then(function (data) {
+      contactSubmit.disabled = false;
+      if (data.success) {
+        contactStatus.textContent = '送信しました。ありがとうございます！';
+        contactStatus.className = 'contact-status ok';
+        contactForm.reset();
+      } else {
+        contactStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        contactStatus.className = 'contact-status err';
+      }
+    }).catch(function () {
+      contactSubmit.disabled = false;
+      contactStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      contactStatus.className = 'contact-status err';
+    });
+  });
+})();
+</script>
+</body>
+</html>
