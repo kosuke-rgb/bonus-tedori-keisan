@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>賞与手取り計算ツール(シミュレーション) | ボーナスの手取り額をすぐ計算</title>
-<meta name="description" content="賞与（ボーナス）の額面・前月の給与額・扶養人数を入れるだけで、社会保険料と源泉所得税を差し引いた手取り賞与額の目安がすぐ分かる無料の賞与手取りシミュレーションツールです。">
+<title>賞与（ボーナス）手取り計算ツール｜額面から手取りをすぐ計算【2026年・早見表つき】</title>
+<meta name="description" content="賞与（ボーナス）の額面・前月の給与・扶養人数を入れるだけで、社会保険料（2026年4月からの子ども・子育て支援金を含む）と源泉所得税を引いた手取り額がすぐ分かる無料ツール。40歳以上の介護保険料、健保組合ごとの料率、10万〜100万円の早見表にも対応。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://webtools-labs.com/bonus-tedori-keisan/">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2370765779014113" crossorigin="anonymous"></script>
@@ -31,7 +31,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="webtools-labs">
-<meta property="og:title" content="賞与手取り計算ツール(シミュレーション) | ボーナスの手取り額をすぐ計算">
+<meta property="og:title" content="賞与（ボーナス）手取り計算ツール｜額面から手取りをすぐ計算【2026年・早見表つき】">
 <meta property="og:description" content="賞与の額面・前月の給与額・扶養人数から、社会保険料と源泉所得税を引いた手取り賞与額の目安をすぐ計算できます。">
 <meta property="og:url" content="https://webtools-labs.com/bonus-tedori-keisan/">
 <meta property="og:image" content="https://webtools-labs.com/bonus-tedori-keisan/og-image.png">
@@ -88,6 +88,16 @@
       "@type": "Question",
       "name": "退職予定が決まっている場合、賞与の社会保険料はどうなりますか？",
       "acceptedAnswer": { "@type": "Answer", "text": "社会保険料は「賞与支給日に被保険者資格があるかどうか」で判定されます。退職により資格喪失日（原則、退職日の翌日）を迎えた後に支給される賞与には、健康保険料・厚生年金保険料がかからない場合があります（雇用保険料・所得税は原則かかります）。退職時期と賞与支給日の前後関係によって扱いが変わるため、詳細は勤務先にご確認ください。" }
+    },
+    {
+      "@type": "Question",
+      "name": "2026年からボーナスの手取りが減ったのはなぜですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "2026年4月分から「子ども・子育て支援金」が健康保険料と一緒に徴収されるようになり、賞与にもかかるためです。協会けんぽの料率は0.23%で、本人負担はその半分（0.115%）です。賞与30万円なら約345円が差し引かれます。" }
+    },
+    {
+      "@type": "Question",
+      "name": "40歳以上だとボーナスの手取りはどれくらい減りますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "40〜64歳の人は、健康保険料に加えて介護保険料（協会けんぽは1.62%、本人負担は半分の0.81%）が賞与からも差し引かれます。賞与30万円なら介護保険料は約2,430円です。そのぶん所得税が少し下がるため、手取りは約2,300円少なくなります。" }
     }
   ]
 }
@@ -261,7 +271,7 @@ footer.site-footer a { color: var(--accent); }
   <header class="masthead">
     <h1>賞与手取り計算ツール</h1>
     <p class="lede">賞与（ボーナス）の額面・前月の給与額・扶養人数を入れるだけで、社会保険料と源泉所得税を差し引いた手取り賞与額の目安を計算できます。</p>
-    <span class="updated-note">保険料率・税額表 最終確認日: 2026年9月11日</span>
+    <span class="updated-note">保険料率・税額表 最終確認日: 2026年10月9日</span>
     <p class="ad-disclosure" style="font-size:0.75rem;opacity:0.7;margin:0.5rem 0 0;">※当サイトはアフィリエイト広告（PR）を利用しています。</p>
   </header>
 
@@ -299,6 +309,20 @@ footer.site-footer a { color: var(--accent); }
         <div class="field-hint">「給与所得者の扶養控除等申告書」の人数</div>
       </div>
     </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="ageGroup">年齢</label>
+        <select id="ageGroup">
+          <option value="under40">40歳未満</option>
+          <option value="over40">40〜64歳（介護保険料あり）</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="healthRate">健康保険料率（%・会社と本人の合計）</label>
+        <input type="number" id="healthRate" min="0" max="20" step="0.01" value="9.85">
+        <div class="field-hint">協会けんぽ東京都は9.85%。都道府県・健保組合で違います</div>
+      </div>
+    </div>
 
     <div class="summary-cards" id="summaryCards"></div>
 
@@ -310,7 +334,7 @@ footer.site-footer a { color: var(--accent); }
         <tbody id="resultBody"></tbody>
       </table>
     </div>
-    <p class="disclaimer">本ツールは「協会けんぽ・東京都・40歳未満（介護保険料非該当）・厚生年金加入」を前提にした概算です。健康保険料率は加入する都道府県・健保組合により異なり、40歳以上65歳未満の方は介護保険料が加算されます。源泉所得税は「給与所得者の扶養控除等申告書」を提出している場合（甲欄）の税率を使用しています。正確な金額は給与明細・勤務先の給与担当にご確認ください。</p>
+    <p class="disclaimer">本ツールは協会けんぽ（初期値は東京都の9.85%）・厚生年金加入を前提にした概算です。健康保険料率は加入する都道府県・健保組合によって異なるため、給与明細や健保組合のサイトで確認した料率を入力してください。40〜64歳を選ぶと介護保険料（1.62%）が加わります。2026年4月分から始まった子ども・子育て支援金（0.23%）も、賞与から差し引かれます。健康保険の標準賞与額の年度上限（573万円）は考慮していません。源泉所得税は「給与所得者の扶養控除等申告書」を提出している場合（甲欄）の税率を使用しています。正確な金額は給与明細・勤務先の給与担当にご確認ください。</p>
     <div class="share-row" id="shareRow">
       <a class="share-btn share-x" id="shareX" href="#" target="_blank" rel="noopener">𝕏でシェア</a>
       <a class="share-btn share-line" id="shareLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
@@ -326,12 +350,35 @@ footer.site-footer a { color: var(--accent); }
         <thead><tr><th>項目</th><th>料率（2026年度・労働者負担分）</th><th class="num">備考</th></tr></thead>
         <tbody>
           <tr><td>健康保険料</td><td>9.85% ÷ 2</td><td class="num">協会けんぽ・東京都</td></tr>
+          <tr><td>介護保険料</td><td>1.62% ÷ 2</td><td class="num">40〜64歳のみ</td></tr>
+          <tr><td>子ども・子育て支援金</td><td>0.23% ÷ 2</td><td class="num">2026年4月分から</td></tr>
           <tr><td>厚生年金保険料</td><td>18.3% ÷ 2</td><td class="num">標準賞与額150万円が上限</td></tr>
           <tr><td>雇用保険料</td><td>0.5%（5/1000）</td><td class="num">一般の事業</td></tr>
           <tr><td>源泉所得税</td><td>賞与の金額に乗ずべき率</td><td class="num">前月給与・扶養人数で変動</td></tr>
         </tbody>
       </table>
     </div>
+  </section>
+
+  <section>
+    <h2>ボーナスの手取り 早見表（2026年）</h2>
+    <p>協会けんぽ東京都の料率で計算した手取りの目安です。前月の給与（社会保険料等控除後）と扶養の人数によって所得税の税率が変わるため、代表的な条件で並べています。</p>
+    <div class="ref-table" style="overflow-x:auto">
+      <table>
+        <thead><tr><th>賞与の額面</th><th class="num">前月25万円・扶養0人・40歳未満</th><th class="num">前月35万円・扶養0人・40歳未満</th><th class="num">前月35万円・扶養2人・40歳未満</th><th class="num">前月35万円・扶養0人・40〜64歳</th></tr></thead>
+        <tbody>
+          <tr><td>10万円</td><td class="num">81,826円</td><td class="num">76,600円</td><td class="num">80,084円</td><td class="num">75,873円</td></tr>
+          <tr><td>20万円</td><td class="num">163,652円</td><td class="num">153,200円</td><td class="num">160,168円</td><td class="num">151,745円</td></tr>
+          <tr><td>30万円</td><td class="num">245,478円</td><td class="num">229,800円</td><td class="num">240,252円</td><td class="num">227,618円</td></tr>
+          <tr><td>40万円</td><td class="num">327,304円</td><td class="num">306,399円</td><td class="num">320,336円</td><td class="num">303,490円</td></tr>
+          <tr><td>50万円</td><td class="num">409,130円</td><td class="num">382,999円</td><td class="num">400,420円</td><td class="num">379,363円</td></tr>
+          <tr><td>60万円</td><td class="num">490,956円</td><td class="num">459,599円</td><td class="num">480,503円</td><td class="num">455,235円</td></tr>
+          <tr><td>80万円</td><td class="num">654,608円</td><td class="num">612,799円</td><td class="num">640,671円</td><td class="num">606,980円</td></tr>
+          <tr><td>100万円</td><td class="num">818,259円</td><td class="num">765,998円</td><td class="num">800,839円</td><td class="num">758,725円</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">手取りの割合は、多くの人でおおむね額面の75〜82%程度です。前月の給与が高い人ほど所得税の税率が上がり、40歳以上は介護保険料の分だけ手取りが減ります。</p>
   </section>
 
   <section>
@@ -343,15 +390,16 @@ footer.site-footer a { color: var(--accent); }
         <tbody>
           <tr><td>賞与の額面</td><td class="num">300,000円</td></tr>
           <tr><td>① 健康保険料（9.85%の折半分）</td><td class="num">▲14,775円</td></tr>
-          <tr><td>② 厚生年金保険料（18.3%の折半分）</td><td class="num">▲27,450円</td></tr>
-          <tr><td>③ 雇用保険料（0.5%）</td><td class="num">▲1,500円</td></tr>
-          <tr><td>社会保険料控除後の賞与</td><td class="num">256,275円</td></tr>
-          <tr><td>④ 源泉所得税（税率4.084%）</td><td class="num">▲10,466円</td></tr>
-          <tr class="best"><td>手取り賞与額</td><td class="num">245,809円</td></tr>
+          <tr><td>② 子ども・子育て支援金（0.23%の折半分）</td><td class="num">▲345円</td></tr>
+          <tr><td>③ 厚生年金保険料（18.3%の折半分）</td><td class="num">▲27,450円</td></tr>
+          <tr><td>④ 雇用保険料（0.5%）</td><td class="num">▲1,500円</td></tr>
+          <tr><td>社会保険料控除後の賞与</td><td class="num">255,930円</td></tr>
+          <tr><td>⑤ 源泉所得税（税率4.084%）</td><td class="num">▲10,452円</td></tr>
+          <tr class="best"><td>手取り賞与額</td><td class="num">245,478円</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="disclaimer">額面30万円に対して、手取りは約81.9%になる計算です。前月給与や扶養人数が変わると税率が変わるため、ご自身の条件は上の計算フォームでご確認ください。</p>
+    <p class="disclaimer">額面30万円に対して、手取りは約81.8%になる計算です。前月給与や扶養人数が変わると税率が変わるため、ご自身の条件は上の計算フォームでご確認ください。</p>
   </section>
 
   <div class="pr-box">
@@ -415,6 +463,14 @@ footer.site-footer a { color: var(--accent); }
       <summary>退職予定が決まっている場合、賞与の社会保険料はどうなりますか？</summary>
       <p>社会保険料は「賞与支給日に被保険者資格があるかどうか」で判定されます。退職により資格喪失日（原則、退職日の翌日）を迎えた後に支給される賞与には、健康保険料・厚生年金保険料がかからない場合があります（雇用保険料・所得税は原則かかります）。退職時期と賞与支給日の前後関係によって扱いが変わるため、詳細は勤務先にご確認ください。</p>
     </details>
+    <details class="faq-item">
+      <summary>2026年からボーナスの手取りが減ったのはなぜですか？</summary>
+      <p>2026年4月分から「子ども・子育て支援金」が健康保険料と一緒に徴収されるようになり、賞与にもかかるためです。協会けんぽの料率は0.23%で、本人負担はその半分（0.115%）です。賞与30万円なら約345円が差し引かれます。</p>
+    </details>
+    <details class="faq-item">
+      <summary>40歳以上だとボーナスの手取りはどれくらい減りますか？</summary>
+      <p>40〜64歳の人は、健康保険料に加えて介護保険料（協会けんぽは1.62%、本人負担は半分の0.81%）が賞与からも差し引かれます。賞与30万円なら介護保険料は約2,430円です。そのぶん所得税が少し下がるため、手取りは約2,300円少なくなります。</p>
+    </details>
   </section>
 
   <section class="contact-box">
@@ -477,6 +533,8 @@ footer.site-footer a { color: var(--accent); }
   var PENSION_RATE = 0.183;
   var PENSION_CAP = 1500000;
   var EMPLOYMENT_RATE = 0.005;
+  var KAIGO_RATE = 0.0162;   // 介護保険料率（協会けんぽ、令和8年度）
+  var KOSODATE_RATE = 0.0023; // 子ども・子育て支援金率（令和8年度、2026年4月分から。賞与にもかかる）
 
   var RATE_TABLE = {
     0: [[0,82000,0],[82000,94000,2.042],[94000,260000,4.084],[260000,309000,6.126],[309000,342000,8.168],[342000,372000,10.210],[372000,402000,12.252],[402000,433000,14.294],[433000,520000,16.336],[520000,605000,18.378],[605000,684000,20.420],[684000,715000,22.462],[715000,752000,24.504],[752000,795000,26.546],[795000,854000,28.588],[854000,922000,30.630],[922000,1318000,32.672],[1318000,1521000,35.735],[1521000,2621000,38.798],[2621000,3495000,41.861],[3495000,Infinity,45.945]],
@@ -497,6 +555,8 @@ footer.site-footer a { color: var(--accent); }
   var bonusInput = document.getElementById('bonus');
   var prevSalaryInput = document.getElementById('prevSalary');
   var dependentsSelect = document.getElementById('dependents');
+  var ageGroupSelect = document.getElementById('ageGroup');
+  var healthRateInput = document.getElementById('healthRate');
   var summaryCards = document.getElementById('summaryCards');
   var resultBody = document.getElementById('resultBody');
   var shareX = document.getElementById('shareX');
@@ -517,11 +577,15 @@ footer.site-footer a { color: var(--accent); }
     var dependents = Number(dependentsSelect.value);
 
     var standardBonus = Math.floor(bonus / 1000) * 1000;
-    var health = Math.round(standardBonus * HEALTH_RATE / 2);
+    var hr = Number(healthRateInput.value);
+    var healthRate = isFinite(hr) && hr > 0 ? hr / 100 : HEALTH_RATE;
+    var over40 = ageGroupSelect.value === 'over40';
+    var health = Math.round(standardBonus * (healthRate + (over40 ? KAIGO_RATE : 0)) / 2);
+    var kosodate = Math.round(standardBonus * KOSODATE_RATE / 2);
     var pensionBase = Math.min(standardBonus, PENSION_CAP);
     var pension = Math.round(pensionBase * PENSION_RATE / 2);
     var employment = Math.round(bonus * EMPLOYMENT_RATE);
-    var socialTotal = health + pension + employment;
+    var socialTotal = health + kosodate + pension + employment;
     var afterSocial = Math.max(0, bonus - socialTotal);
     var rate = findRate(dependents, prevSalary);
     var tax = Math.round(afterSocial * rate / 100);
@@ -533,7 +597,8 @@ footer.site-footer a { color: var(--accent); }
 
     var rows = [
       ['賞与の額面', bonus],
-      ['健康保険料', -health],
+      [over40 ? '健康保険料（介護保険料を含む）' : '健康保険料', -health],
+      ['子ども・子育て支援金', -kosodate],
       ['厚生年金保険料', -pension],
       ['雇用保険料', -employment],
       ['社会保険料控除後の賞与', afterSocial],
@@ -554,6 +619,8 @@ footer.site-footer a { color: var(--accent); }
   bonusInput.addEventListener('input', render);
   prevSalaryInput.addEventListener('input', render);
   dependentsSelect.addEventListener('change', render);
+  ageGroupSelect.addEventListener('change', render);
+  healthRateInput.addEventListener('input', render);
 
   render();
 
