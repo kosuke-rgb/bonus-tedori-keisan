@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>賞与（ボーナス）手取り計算ツール｜額面から手取りをすぐ計算【2026年・早見表つき】</title>
+<title>賞与（ボーナス）の手取り計算ツール【2026年冬・令和8年】額面から手取りがすぐ分かる｜早見表つき</title>
 <meta name="description" content="賞与（ボーナス）の額面・前月の給与・扶養人数を入れるだけで、社会保険料（2026年4月からの子ども・子育て支援金を含む）と源泉所得税を引いた手取り額がすぐ分かる無料ツール。40歳以上の介護保険料、健保組合ごとの料率、10万〜100万円の早見表にも対応。">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://webtools-labs.com/bonus-tedori-keisan/">
@@ -31,7 +31,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="webtools-labs">
-<meta property="og:title" content="賞与（ボーナス）手取り計算ツール｜額面から手取りをすぐ計算【2026年・早見表つき】">
+<meta property="og:title" content="賞与（ボーナス）の手取り計算ツール【2026年冬・令和8年】額面から手取りがすぐ分かる｜早見表つき">
 <meta property="og:description" content="賞与の額面・前月の給与額・扶養人数から、社会保険料と源泉所得税を引いた手取り賞与額の目安をすぐ計算できます。">
 <meta property="og:url" content="https://webtools-labs.com/bonus-tedori-keisan/">
 <meta property="og:image" content="https://webtools-labs.com/bonus-tedori-keisan/og-image.png">
@@ -59,6 +59,21 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ボーナスから住民税は引かれますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "会社員（特別徴収）の場合、住民税は前年の所得をもとに決まった年税額を6月から翌年5月までの毎月の給与から12回に分けて引く仕組みのため、ボーナスからは原則として引かれません。ボーナスから引かれるのは、健康保険料・厚生年金保険料・雇用保険料などの社会保険料と所得税です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "ボーナスの手取りは額面の何割くらいですか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "協会けんぽ・40歳未満の場合、多くの人で額面の約75〜82%が目安です。賞与30万円・前月の給与25万円・扶養0人なら手取りは約24.5万円（約81.8%）です。前月の給与が高いほど所得税の税率が上がり、40歳以上は介護保険料の分だけ手取りが少なくなります。" }
+    },
+    {
+      "@type": "Question",
+      "name": "2026年冬のボーナスは所得税が多く引かれますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "2026年は基礎控除などが引き上げられましたが、2026年中のボーナスの所得税は改正前の金額を前提にした税率表で天引きされます。そのため本来より多めに引かれやすく、払いすぎた分は12月（または1月）の年末調整でまとめて戻ってきます。" }
+    },
     {
       "@type": "Question",
       "name": "賞与にも社会保険料はかかりますか？",
@@ -279,7 +294,7 @@ footer.site-footer a { color: var(--accent); }
   <header class="masthead">
     <h1>賞与手取り計算ツール</h1>
     <p class="lede">賞与（ボーナス）の額面・前月の給与額・扶養人数を入れるだけで、社会保険料と源泉所得税を差し引いた手取り賞与額の目安を計算できます。</p>
-    <span class="updated-note">保険料率・税額表 最終確認日: 2026年10月9日</span>
+    <span class="updated-note">保険料率・税額表 最終確認日: 2026年10月15日</span>
     <p class="ad-disclosure" style="font-size:0.75rem;opacity:0.7;margin:0.5rem 0 0;">※当サイトはアフィリエイト広告（PR）を利用しています。</p>
   </header>
 
@@ -333,6 +348,7 @@ footer.site-footer a { color: var(--accent); }
     </div>
 
     <div class="summary-cards" id="summaryCards"></div>
+    <p class="notice-box" id="specialNote" style="display:none"></p>
 
     <div style="overflow-x:auto">
       <table class="compare">
@@ -387,6 +403,45 @@ footer.site-footer a { color: var(--accent); }
       </table>
     </div>
     <p class="disclaimer">手取りの割合は、多くの人でおおむね額面の75〜82%程度です。前月の給与が高い人ほど所得税の税率が上がり、40歳以上は介護保険料の分だけ手取りが減ります。</p>
+  </section>
+
+  <section>
+    <h2>前月の給与別 ボーナスにかかる所得税の税率（令和8年分）</h2>
+    <p>ボーナスの所得税は「社会保険料を引いた後の賞与」に、下の税率をかけて計算します。税率は<strong>前月の給与（社会保険料等を引いた後の金額）</strong>と扶養の人数で決まります。</p>
+    <div class="ref-table" style="overflow-x:auto">
+      <table style="white-space:nowrap">
+        <thead><tr><th>前月の給与<br>（社会保険料等控除後）</th><th class="num">扶養0人</th><th class="num">扶養1人</th><th class="num">扶養2人</th><th class="num">扶養3人</th></tr></thead>
+        <tbody>
+          <tr><td>15万円</td><td class="num">4.084%</td><td class="num">2.042%</td><td class="num">2.042%</td><td class="num">0%</td></tr>
+          <tr><td>20万円</td><td class="num">4.084%</td><td class="num">2.042%</td><td class="num">2.042%</td><td class="num">2.042%</td></tr>
+          <tr><td>25万円</td><td class="num">4.084%</td><td class="num">4.084%</td><td class="num">2.042%</td><td class="num">2.042%</td></tr>
+          <tr><td>30万円</td><td class="num">6.126%</td><td class="num">6.126%</td><td class="num">4.084%</td><td class="num">4.084%</td></tr>
+          <tr><td>35万円</td><td class="num">10.210%</td><td class="num">8.168%</td><td class="num">6.126%</td><td class="num">4.084%</td></tr>
+          <tr><td>40万円</td><td class="num">12.252%</td><td class="num">10.210%</td><td class="num">10.210%</td><td class="num">6.126%</td></tr>
+          <tr><td>45万円</td><td class="num">16.336%</td><td class="num">14.294%</td><td class="num">12.252%</td><td class="num">10.210%</td></tr>
+          <tr><td>50万円</td><td class="num">16.336%</td><td class="num">16.336%</td><td class="num">16.336%</td><td class="num">14.294%</td></tr>
+          <tr><td>60万円</td><td class="num">18.378%</td><td class="num">18.378%</td><td class="num">18.378%</td><td class="num">18.378%</td></tr>
+          <tr><td>70万円</td><td class="num">22.462%</td><td class="num">20.420%</td><td class="num">20.420%</td><td class="num">20.420%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer">国税庁「賞与に対する源泉徴収税額の算出率の表（令和8年分）」の甲欄から、代表的な金額の税率を抜き出したものです（税率は復興特別所得税を含みます）。境目の金額では税率が変わるため、正確には上の計算ツールに前月の給与を入れて確認してください。前月の給与がない場合や、賞与が前月の給与の10倍を超える場合は、この表ではなく別の方法で計算します（下で解説）。</p>
+  </section>
+
+  <section>
+    <h2>2026年冬のボーナスと年末調整の関係</h2>
+    <p>2026年（令和8年分）から、所得税の基礎控除（合計所得489万円以下は最大104万円）と給与所得控除の最低額（74万円）が引き上げられました。ただし、2026年中の給与やボーナスから天引きされる所得税は、<strong>改正前の金額を前提にした税額表</strong>で計算されています。冬のボーナスの税率も同じです。</p>
+    <p>そのため、2026年はボーナスも含めて所得税が多めに天引きされやすく、払いすぎた分は12月（または1月）の<strong>年末調整でまとめて戻ってきます</strong>。冬のボーナスの手取りが去年と比べて増えていなくても、年末調整の還付金で取り戻せるしくみです。どれくらい戻るかは<a href="https://webtools-labs.com/nencho-kanpu-keisan/">年末調整 還付金シミュレーター</a>で確認できます。</p>
+  </section>
+
+  <section>
+    <h2 id="special-calc">前月の給与がない・賞与が前月給与の10倍を超えるときの計算</h2>
+    <p>次の2つのケースでは、上の税率表を使わず、毎月の給与と同じ「月額表」を使って所得税を計算します。入社直後のボーナスや、育休・休職明けで前月の給与が少ないときに当てはまりやすいので注意しましょう。</p>
+    <ul>
+      <li><strong>前月に給与の支払いがない場合</strong>：社会保険料を引いた賞与を6で割り（賞与の計算期間が6か月を超えるときは12）、その金額を月額表に当てはめた税額を6倍（または12倍）します。</li>
+      <li><strong>賞与（社会保険料控除後）が前月の給与（社会保険料等控除後）の10倍を超える場合</strong>：賞与を6（または12）で割った金額に前月の給与を足して月額表で税額を出し、そこから前月の給与の税額を引いて6倍（または12倍）します。</li>
+    </ul>
+    <p class="disclaimer">このページの計算ツールはこの2つのケースに対応していないため、当てはまるときは計算結果の下に注意を表示します。計算方法は<a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm" target="_blank" rel="noopener">国税庁「賞与に対する源泉徴収」</a>にもとづいています。</p>
   </section>
 
   <section>
@@ -482,6 +537,18 @@ footer.site-footer a { color: var(--accent); }
 
   <section>
     <h2>よくある質問</h2>
+    <details class="faq-item">
+      <summary>ボーナスから住民税は引かれますか？</summary>
+      <p>会社員（特別徴収）の場合、住民税は前年の所得をもとに決まった年税額を6月から翌年5月までの毎月の給与から12回に分けて引く仕組みのため、ボーナスからは原則として引かれません。ボーナスから引かれるのは、健康保険料・厚生年金保険料・雇用保険料などの社会保険料と所得税です。</p>
+    </details>
+    <details class="faq-item">
+      <summary>ボーナスの手取りは額面の何割くらいですか？</summary>
+      <p>協会けんぽ・40歳未満の場合、多くの人で額面の約75〜82%が目安です。賞与30万円・前月の給与25万円・扶養0人なら手取りは約24.5万円（約81.8%）です。前月の給与が高いほど所得税の税率が上がり、40歳以上は介護保険料の分だけ手取りが少なくなります。</p>
+    </details>
+    <details class="faq-item">
+      <summary>2026年冬のボーナスは所得税が多く引かれますか？</summary>
+      <p>2026年は基礎控除などが引き上げられましたが、2026年中のボーナスの所得税は改正前の金額を前提にした税率表で天引きされます。そのため本来より多めに引かれやすく、払いすぎた分は12月（または1月）の年末調整でまとめて戻ってきます。</p>
+    </details>
     <details class="faq-item">
       <summary>賞与にも社会保険料はかかりますか？</summary>
       <p>はい。賞与も「標準賞与額」として健康保険料・厚生年金保険料・雇用保険料の対象になります。厚生年金保険料は1回の賞与につき150万円が上限となり、それを超える部分には保険料がかかりません。</p>
@@ -633,6 +700,18 @@ footer.site-footer a { color: var(--accent); }
     var rate = findRate(dependents, prevSalary);
     var tax = Math.round(afterSocial * rate / 100);
     var takeHome = afterSocial - tax;
+
+    // 前月給与なし・賞与が前月給与の10倍超のときは月額表を使う別の計算になる（国税庁 No.2523）
+    var specialNote = document.getElementById('specialNote');
+    if (bonus > 0 && prevSalary === 0) {
+      specialNote.innerHTML = '⚠️ 前月の給与が0円の場合、ボーナスの所得税は税率表ではなく「月額表」を使う別の方法で計算されます。下の結果は税率0%で計算しているため、実際の手取りはこれより少なくなります（<a href="#special-calc" style="color:inherit;text-decoration:underline;">計算方法の解説</a>）。';
+      specialNote.style.display = '';
+    } else if (bonus > 0 && afterSocial > prevSalary * 10) {
+      specialNote.innerHTML = '⚠️ 賞与（社会保険料控除後）が前月の給与の10倍を超えているため、実際の所得税は「月額表」を使う別の方法で計算されます。下の結果とずれる場合があります（<a href="#special-calc" style="color:inherit;text-decoration:underline;">計算方法の解説</a>）。';
+      specialNote.style.display = '';
+    } else {
+      specialNote.style.display = 'none';
+    }
 
     summaryCards.innerHTML =
       '<div class="summary-card"><div class="label">手取り賞与額</div><div class="value">' + yen(takeHome) + '</div><div class="sub">額面' + yen(bonus) + '中</div></div>' +
