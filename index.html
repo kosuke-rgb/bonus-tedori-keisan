@@ -214,7 +214,7 @@ tr.best { background: var(--best-bg); }
 tr.na td { color: var(--muted); }
 
 .ref-table { overflow-x: auto; }
-.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 460px; }
+.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 0; }
 .ref-table th, .ref-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
 .ref-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
 
@@ -303,6 +303,15 @@ footer.site-footer a { color: var(--accent); }
 .related-tools a { color: var(--accent); font-weight: 700; text-decoration: none; }
 .related-tools a:hover { text-decoration: underline; }
 .related-tools li p { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.85rem; }
+/* スマホで表が画面からはみ出さないように（2026-11-17） */
+@media (max-width: 600px) {
+  .ref-table table { font-size: 0.8rem; }
+  .ref-table th, .ref-table td { padding: 0.45rem 0.3rem; }
+  .ref-table th, .ref-table td:first-child { white-space: normal; }
+  .ref-table td.nw { white-space: nowrap; }
+  .ref-table th:first-child, .ref-table td:first-child { min-width: 5em; position: sticky; left: 0; z-index: 1; background: var(--bg); box-shadow: 1px 0 0 var(--line); }
+  .ref-table tr.best td:first-child, .ref-table tr.total td:first-child, .ref-table tr.next td:first-child, .ref-table tr.highlight td:first-child { background: var(--best-bg, var(--bg)); }
+}
 </style>
 </head>
 <body>
@@ -425,21 +434,21 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>賞与の額面</th><th class="num">前月25万円・扶養0人・40歳未満</th><th class="num">前月35万円・扶養0人・40歳未満</th><th class="num">前月35万円・扶養2人・40歳未満</th><th class="num">前月35万円・扶養0人・40〜64歳</th></tr></thead>
         <tbody>
-          <tr><td>5万円</td><td class="num">40,912円</td><td class="num">38,299円</td><td class="num">40,041円</td><td class="num">37,935円</td></tr>
-          <tr><td>10万円</td><td class="num">81,826円</td><td class="num">76,600円</td><td class="num">80,084円</td><td class="num">75,873円</td></tr>
-          <tr><td>15万円</td><td class="num">122,738円</td><td class="num">114,899円</td><td class="num">120,125円</td><td class="num">113,808円</td></tr>
-          <tr><td>20万円</td><td class="num">163,652円</td><td class="num">153,200円</td><td class="num">160,168円</td><td class="num">151,745円</td></tr>
-          <tr><td>25万円</td><td class="num">204,564円</td><td class="num">191,499円</td><td class="num">200,209円</td><td class="num">189,680円</td></tr>
-          <tr><td>30万円</td><td class="num">245,478円</td><td class="num">229,800円</td><td class="num">240,252円</td><td class="num">227,618円</td></tr>
-          <tr><td>40万円</td><td class="num">327,304円</td><td class="num">306,399円</td><td class="num">320,336円</td><td class="num">303,490円</td></tr>
-          <tr><td>50万円</td><td class="num">409,130円</td><td class="num">382,999円</td><td class="num">400,420円</td><td class="num">379,363円</td></tr>
-          <tr><td>60万円</td><td class="num">490,956円</td><td class="num">459,599円</td><td class="num">480,503円</td><td class="num">455,235円</td></tr>
-          <tr><td>70万円</td><td class="num">572,782円</td><td class="num">536,199円</td><td class="num">560,587円</td><td class="num">531,108円</td></tr>
-          <tr><td>80万円</td><td class="num">654,608円</td><td class="num">612,799円</td><td class="num">640,671円</td><td class="num">606,980円</td></tr>
-          <tr><td>90万円</td><td class="num">736,433円</td><td class="num">689,399円</td><td class="num">720,755円</td><td class="num">682,853円</td></tr>
-          <tr><td>100万円</td><td class="num">818,259円</td><td class="num">765,998円</td><td class="num">800,839円</td><td class="num">758,725円</td></tr>
-          <tr><td>120万円</td><td class="num">981,911円</td><td class="num">919,198円</td><td class="num">961,007円</td><td class="num">910,471円</td></tr>
-          <tr><td>150万円</td><td class="num">1,227,389円</td><td class="num">1,148,998円</td><td class="num">1,201,259円</td><td class="num">1,138,088円</td></tr>
+          <tr><td>5万円</td><td class="num nw">40,912円</td><td class="num nw">38,299円</td><td class="num nw">40,041円</td><td class="num nw">37,935円</td></tr>
+          <tr><td>10万円</td><td class="num nw">81,826円</td><td class="num nw">76,600円</td><td class="num nw">80,084円</td><td class="num nw">75,873円</td></tr>
+          <tr><td>15万円</td><td class="num nw">122,738円</td><td class="num nw">114,899円</td><td class="num nw">120,125円</td><td class="num nw">113,808円</td></tr>
+          <tr><td>20万円</td><td class="num nw">163,652円</td><td class="num nw">153,200円</td><td class="num nw">160,168円</td><td class="num nw">151,745円</td></tr>
+          <tr><td>25万円</td><td class="num nw">204,564円</td><td class="num nw">191,499円</td><td class="num nw">200,209円</td><td class="num nw">189,680円</td></tr>
+          <tr><td>30万円</td><td class="num nw">245,478円</td><td class="num nw">229,800円</td><td class="num nw">240,252円</td><td class="num nw">227,618円</td></tr>
+          <tr><td>40万円</td><td class="num nw">327,304円</td><td class="num nw">306,399円</td><td class="num nw">320,336円</td><td class="num nw">303,490円</td></tr>
+          <tr><td>50万円</td><td class="num nw">409,130円</td><td class="num nw">382,999円</td><td class="num nw">400,420円</td><td class="num nw">379,363円</td></tr>
+          <tr><td>60万円</td><td class="num nw">490,956円</td><td class="num nw">459,599円</td><td class="num nw">480,503円</td><td class="num nw">455,235円</td></tr>
+          <tr><td>70万円</td><td class="num nw">572,782円</td><td class="num nw">536,199円</td><td class="num nw">560,587円</td><td class="num nw">531,108円</td></tr>
+          <tr><td>80万円</td><td class="num nw">654,608円</td><td class="num nw">612,799円</td><td class="num nw">640,671円</td><td class="num nw">606,980円</td></tr>
+          <tr><td>90万円</td><td class="num nw">736,433円</td><td class="num nw">689,399円</td><td class="num nw">720,755円</td><td class="num nw">682,853円</td></tr>
+          <tr><td>100万円</td><td class="num nw">818,259円</td><td class="num nw">765,998円</td><td class="num nw">800,839円</td><td class="num nw">758,725円</td></tr>
+          <tr><td>120万円</td><td class="num nw">981,911円</td><td class="num nw">919,198円</td><td class="num nw">961,007円</td><td class="num nw">910,471円</td></tr>
+          <tr><td>150万円</td><td class="num nw">1,227,389円</td><td class="num nw">1,148,998円</td><td class="num nw">1,201,259円</td><td class="num nw">1,138,088円</td></tr>
         </tbody>
       </table>
     </div>
@@ -453,16 +462,16 @@ footer.site-footer a { color: var(--accent); }
       <table style="white-space:nowrap">
         <thead><tr><th>前月の給与<br>（社会保険料等控除後）</th><th class="num">扶養0人</th><th class="num">扶養1人</th><th class="num">扶養2人</th><th class="num">扶養3人</th></tr></thead>
         <tbody>
-          <tr><td>15万円</td><td class="num">4.084%</td><td class="num">2.042%</td><td class="num">2.042%</td><td class="num">0%</td></tr>
-          <tr><td>20万円</td><td class="num">4.084%</td><td class="num">2.042%</td><td class="num">2.042%</td><td class="num">2.042%</td></tr>
-          <tr><td>25万円</td><td class="num">4.084%</td><td class="num">4.084%</td><td class="num">2.042%</td><td class="num">2.042%</td></tr>
-          <tr><td>30万円</td><td class="num">6.126%</td><td class="num">6.126%</td><td class="num">4.084%</td><td class="num">4.084%</td></tr>
-          <tr><td>35万円</td><td class="num">10.210%</td><td class="num">8.168%</td><td class="num">6.126%</td><td class="num">4.084%</td></tr>
-          <tr><td>40万円</td><td class="num">12.252%</td><td class="num">10.210%</td><td class="num">10.210%</td><td class="num">6.126%</td></tr>
-          <tr><td>45万円</td><td class="num">16.336%</td><td class="num">14.294%</td><td class="num">12.252%</td><td class="num">10.210%</td></tr>
-          <tr><td>50万円</td><td class="num">16.336%</td><td class="num">16.336%</td><td class="num">16.336%</td><td class="num">14.294%</td></tr>
-          <tr><td>60万円</td><td class="num">18.378%</td><td class="num">18.378%</td><td class="num">18.378%</td><td class="num">18.378%</td></tr>
-          <tr><td>70万円</td><td class="num">22.462%</td><td class="num">20.420%</td><td class="num">20.420%</td><td class="num">20.420%</td></tr>
+          <tr><td>15万円</td><td class="num nw">4.084%</td><td class="num nw">2.042%</td><td class="num nw">2.042%</td><td class="num nw">0%</td></tr>
+          <tr><td>20万円</td><td class="num nw">4.084%</td><td class="num nw">2.042%</td><td class="num nw">2.042%</td><td class="num nw">2.042%</td></tr>
+          <tr><td>25万円</td><td class="num nw">4.084%</td><td class="num nw">4.084%</td><td class="num nw">2.042%</td><td class="num nw">2.042%</td></tr>
+          <tr><td>30万円</td><td class="num nw">6.126%</td><td class="num nw">6.126%</td><td class="num nw">4.084%</td><td class="num nw">4.084%</td></tr>
+          <tr><td>35万円</td><td class="num nw">10.210%</td><td class="num nw">8.168%</td><td class="num nw">6.126%</td><td class="num nw">4.084%</td></tr>
+          <tr><td>40万円</td><td class="num nw">12.252%</td><td class="num nw">10.210%</td><td class="num nw">10.210%</td><td class="num nw">6.126%</td></tr>
+          <tr><td>45万円</td><td class="num nw">16.336%</td><td class="num nw">14.294%</td><td class="num nw">12.252%</td><td class="num nw">10.210%</td></tr>
+          <tr><td>50万円</td><td class="num nw">16.336%</td><td class="num nw">16.336%</td><td class="num nw">16.336%</td><td class="num nw">14.294%</td></tr>
+          <tr><td>60万円</td><td class="num nw">18.378%</td><td class="num nw">18.378%</td><td class="num nw">18.378%</td><td class="num nw">18.378%</td></tr>
+          <tr><td>70万円</td><td class="num nw">22.462%</td><td class="num nw">20.420%</td><td class="num nw">20.420%</td><td class="num nw">20.420%</td></tr>
         </tbody>
       </table>
     </div>
@@ -506,14 +515,14 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>項目</th><th class="num">金額</th></tr></thead>
         <tbody>
-          <tr><td>賞与の額面</td><td class="num">300,000円</td></tr>
+          <tr><td>賞与の額面</td><td class="num nw">300,000円</td></tr>
           <tr><td>① 健康保険料（9.85%の折半分）</td><td class="num">▲14,775円</td></tr>
           <tr><td>② 子ども・子育て支援金（0.23%の折半分）</td><td class="num">▲345円</td></tr>
           <tr><td>③ 厚生年金保険料（18.3%の折半分）</td><td class="num">▲27,450円</td></tr>
           <tr><td>④ 雇用保険料（0.5%）</td><td class="num">▲1,500円</td></tr>
-          <tr><td>社会保険料控除後の賞与</td><td class="num">255,930円</td></tr>
+          <tr><td>社会保険料控除後の賞与</td><td class="num nw">255,930円</td></tr>
           <tr><td>⑤ 源泉所得税（税率4.084%）</td><td class="num">▲10,452円</td></tr>
-          <tr class="best"><td>手取り賞与額</td><td class="num">245,478円</td></tr>
+          <tr class="best"><td>手取り賞与額</td><td class="num nw">245,478円</td></tr>
         </tbody>
       </table>
     </div>
